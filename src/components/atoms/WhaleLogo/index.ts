@@ -1,0 +1,1 @@
+export { WhaleLogo } from './WhaleLogo'

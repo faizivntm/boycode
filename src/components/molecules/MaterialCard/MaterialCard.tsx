@@ -22,7 +22,7 @@ export function MaterialCard({ material }: { material: Material }) {
       </h3>
       <p className="mt-1 line-clamp-3 text-sm text-mist">{material.summary}</p>
 
-      <span className="mt-4 text-sm font-medium text-surf">Baca →</span>
+      <span className="mt-4 text-sm font-medium text-surf">Read →</span>
     </Link>
   )
 }

@@ -31,3 +31,17 @@
     @apply bg-surf/30 text-foam;
   }
 }
+
+/* Gelembung tech stack yang mengapung pelan di hero. */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-bob {
+  animation: bob 4s ease-in-out infinite;
+}
