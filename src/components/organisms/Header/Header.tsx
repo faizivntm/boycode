@@ -51,7 +51,7 @@ export function Header() {
             Materi
           </NavLink>
           <NavLink to="/projects" onClick={toggle} className="py-2">
-            Let's Try
+            Project
           </NavLink>
           <NavLink to="/about" onClick={toggle} className="py-2">
             About
