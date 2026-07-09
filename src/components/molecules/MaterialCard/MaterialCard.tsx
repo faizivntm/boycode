@@ -3,11 +3,19 @@ import type { Material } from '@/content/materials'
 import { formatDate } from '@/lib/utils'
 
 // Molecule: kartu ringkas satu materi. Dipakai di home & /materials.
-export function MaterialCard({ material }: { material: Material }) {
+// `admin` meneruskan konteks admin (?admin=1) ke halaman detail.
+export function MaterialCard({
+  material,
+  admin = false,
+}: {
+  material: Material
+  admin?: boolean
+}) {
   return (
     <Link
       to="/materials/$slug"
       params={{ slug: material.slug }}
+      search={admin ? { admin: true } : {}}
       className="group flex flex-col rounded-xl border border-line bg-tide/60 p-5 transition-colors hover:border-surf/50 hover:bg-tide"
     >
       <div className="flex items-center justify-between text-xs text-mist">

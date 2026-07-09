@@ -25,7 +25,7 @@ export function Header() {
         <nav className="hidden gap-6 text-sm sm:flex">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/materials">Materi</NavLink>
-          <NavLink to="/projects">Tools</NavLink>
+          <NavLink to="/projects">Project</NavLink>
           <NavLink to="/about">About</NavLink>
         </nav>
 

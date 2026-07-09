@@ -1,11 +1,16 @@
 import { useMemo, useState } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { FaArrowLeft } from 'react-icons/fa6'
 import { SectionHeading } from '@/components/molecules/SectionHeading'
 import { MaterialCard, MaterialCardSkeleton } from '@/components/molecules/MaterialCard'
+import { AdminTopbar } from '@/components/organisms/AdminTopbar'
 import { useMaterials } from '@/api/materials/useMaterials'
 import type { Material } from '@/content/materials'
 
 export const Route = createFileRoute('/materials/')({
+  // ?admin=1 → dibuka dari sisi admin (header admin, konteks diteruskan ke detail).
+  validateSearch: (search: Record<string, unknown>): { admin?: boolean } =>
+    search.admin === '1' || search.admin === true ? { admin: true } : {},
   component: Materials,
 })
 
@@ -21,6 +26,7 @@ function searchableText(m: Material): string {
 }
 
 function Materials() {
+  const { admin } = Route.useSearch()
   const { data, isLoading, isError } = useMaterials()
   const [query, setQuery] = useState('')
 
@@ -39,7 +45,17 @@ function Materials() {
   }, [index, query, data])
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 py-16">
+    <>
+      {admin && <AdminTopbar />}
+      <div className="mx-auto w-full max-w-6xl px-6 py-16">
+        {admin && (
+          <Link
+            to="/admin/create_materi"
+            className="mb-4 inline-flex items-center gap-1.5 text-sm text-mist hover:text-surf"
+          >
+            <FaArrowLeft className="h-3 w-3" /> Dashboard
+          </Link>
+        )}
       <SectionHeading
         title="Semua Materi"
         subtitle="Kalau gue sempat belajar sesuatu, biasanya bakal gue tulis di sini."
@@ -72,10 +88,11 @@ function Materials() {
       ) : (
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((m) => (
-            <MaterialCard key={m.slug} material={m} />
+            <MaterialCard key={m.slug} material={m} admin={admin} />
           ))}
         </div>
       )}
-    </div>
+      </div>
+    </>
   )
 }

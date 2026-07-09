@@ -138,7 +138,11 @@ function Dashboard() {
           <h2 className="text-sm font-semibold uppercase tracking-wide text-mist">
             Materi terbaru
           </h2>
-          <Link to="/materials" className="text-xs text-surf hover:underline">
+          <Link
+            to="/materials"
+            search={{ admin: true }}
+            className="text-xs text-surf hover:underline"
+          >
             Lihat semua →
           </Link>
         </div>
@@ -183,6 +187,7 @@ function Dashboard() {
                   <Link
                     to="/materials/$slug"
                     params={{ slug: m.slug }}
+                    search={{ admin: true }}
                     aria-label="Lihat materi"
                     className="rounded p-2 hover:bg-white/5 hover:text-foam"
                   >

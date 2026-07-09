@@ -4,10 +4,13 @@ import { Header } from '@/components/organisms/Header'
 import { Footer } from '@/components/organisms/Footer'
 
 // Template: kerangka halaman (header + area konten + footer).
-// Halaman /admin (login dll) tampil polos tanpa header/footer.
+// Polos (tanpa header/footer publik) untuk halaman /admin, ATAU saat dibuka
+// dalam konteks admin (?admin=1) — di situ halaman render AdminTopbar sendiri.
 export function MainLayout({ children }: { children: ReactNode }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname })
-  const bare = pathname.startsWith('/admin')
+  const location = useRouterState({ select: (s) => s.location })
+  const bare =
+    location.pathname.startsWith('/admin') ||
+    Boolean((location.search as { admin?: boolean }).admin)
 
   if (bare) {
     return <main className="flex min-h-svh flex-col">{children}</main>
