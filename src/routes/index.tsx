@@ -103,11 +103,8 @@ function Index() {
               className="rounded-xl border border-line bg-tide/60 p-6 transition-colors hover:border-surf/50 hover:bg-tide"
             >
               <div className='flex flex-row justify-center items-center gap-3'>
-              {t.name == "Java" && <FaJava className='h-10 w-10'/>}
-              <div>
               <h3 className="font-semibold text-foam">{t.name}</h3>
               <p className="mt-1 text-sm text-mist">{t.total} materi</p>
-              </div>
               </div>
             
             </Link>
